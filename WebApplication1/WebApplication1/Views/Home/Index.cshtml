@@ -1,0 +1,33 @@
+﻿@model WebApplication1.Models.MainPageViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+</div>
+
+@foreach (var match in Model.Matchs)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Start:@match.Start</h2>
+        </div>
+        <div class="col-md-4">
+            <h2>End:@match.End</h2>
+        </div>
+        <div class="col-md-4">
+            @if (match.IsCurrent)
+            {
+            <input type="button" value="Play Now" onclick="location.href='@Url.Action("Home", "Play")'" />
+            }
+            else
+            {
+                <h2>Winners</h2>
+                foreach (var winner in match.Winners)
+                {
+                    <p>@winner</p>
+                }
+            }
+        </div>
+    </div>
+}
